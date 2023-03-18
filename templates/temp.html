@@ -1,0 +1,26 @@
+<!-- This is the HTML code for a simple login form -->
+<form action="action_page.php" method="post"> <!-- This is where you specify the action and method for processing the input -->
+    <div class="imgcontainer"> <!-- This is a container for an image -->
+        <img src="logo.png" alt="Logo" class="logo"> <!-- This is where you put your logo image -->
+    </div>
+
+    <div class="container"> <!-- This is a container for the input fields -->
+        <label for="username"><b>Username</b></label> <!-- This is a label for the username field -->
+        <input type="text" placeholder="Enter Username" name="username" id="username" required> <!-- This is an input field for entering the username -->
+
+        <label for="password"><b>Password</b></label> <!-- This is a label for the password field -->
+        <input type="password" placeholder="Enter Password" name="password" id="password" required> <!-- This is an input field for entering the password -->
+
+        <button type="submit">Login</button> <!-- This is a button for submitting the form -->
+        <label>
+            <input type="checkbox" checked name="remember"> Remember me <!-- This is a checkbox for remembering the user -->
+        </label>
+    </div>
+
+    <div class="container social-login"> <!-- This is a container for social login buttons -->
+        <span class="social-text">Or login with</span> <!-- This is some text before the social buttons -->
+        <a href="#" class="social-icon facebook"><i class='fab fa-facebook-f'></i></a> <!-- This is a button for Facebook login -->
+        <a href="#" class= "social-icon twitter"><i class='fab fa-twitter'></i></a> <!-- This is a button for Twitter login -->
+        <a href="#" class= "social-icon google"><i class='fab fa-google'></i></a> <!-- This is a button for Google login -->
+    </div>
+</form>

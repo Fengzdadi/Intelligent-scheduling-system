@@ -1,29 +1,25 @@
+// This is the Go code for a simple login/logout handler
+
 package main
 
 import (
 	"github.com/gin-gonic/gin"
 )
 
-type myForm struct {
-	Colors []string `form:"colors[]"`
+func handleRequest(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"message": "Hello, World!",
+	})
 }
+
+// 在本地8080端口上运行一个html文件
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.LoadHTMLGlob("templates/*")
-	r.GET("/", indexHandler)
-	r.POST("/", formHandler)
+	router.GET("/", handleRequest)
+	//对一个POST请求返回
 
-	r.Run(":8080")
-}
+	router.Run(":8080")
 
-func indexHandler(c *gin.Context) {
-	c.HTML(200, "form.html", nil)
-}
-
-func formHandler(c *gin.Context) {
-	var fakeForm myForm
-	c.Bind(&fakeForm)
-	c.JSON(200, gin.H{"color": fakeForm.Colors})
 }
