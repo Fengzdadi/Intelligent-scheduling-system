@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+.main {
+    margin: 0px 0px;
+}
+
+.form1 {
+    background: rgba(0, 0, 0, 0);
+    padding: 15px;
+    width: 100px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.select1 {
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0);
+    font-size: 16px;
+    height: 40px;
+}
+
+.select2 {
+    background: rgba(0, 0, 0, 0);
+    font-size: 15px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.table {
+    width: 98%;
+    text-align: center;
+    border-collapse: separate;
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+
+.table {
+    width: 98%;
+    text-align: center;
+    border-collapse: separate;
+    margin-bottom: 20px;
+    margin: 0 auto;
+    border: solid 1px rgb(179, 176, 176);
+}
+
+td {
+    font-size: 14px;
+    height: 17px;
+    border: solid 1px rgb(179, 176, 176);
+}
+
+.btn {
+    margin-top: 20px;
+    float: right;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0);
+}

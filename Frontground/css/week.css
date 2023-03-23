@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+.main {
+    margin: 0px 0px;
+}
+
+.form1 {
+    background: rgba(0, 0, 0, 0);
+    padding: 15px;
+    width: 100px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.select1 {
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0);
+    font-size: 16px;
+    height: 40px;
+}
+
+.select2 {
+    background: rgba(0, 0, 0, 0);
+    font-size: 15px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.table {
+    width: 98%;
+    text-align: center;
+    border-collapse: separate;
+    margin-bottom: 20px;
+    margin:0 auto;
+}
+
+.table td {
+    font-size: 15px;
+    height: 70px;
+}
+
+.btn {
+    margin-top: 20px;
+    float: right;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0);
+}
+
+.aweek {
+    float: right;
+    height: 40px;
+    margin-top: -40px;
+    margin-right: 50px;
+}
+
+.aweek td {
+    font-size: 15px;
+    height: 30px;
+    width: 200px;
+}
+
+.last-week {
+    float: right;
+    border: 0px;
+    font-size: 25px;
+    padding: 0 20px;
+    line-height: 0px;
+    justify-content: space-between;
+    display: block;
+    user-select: none;
+    margin-right: 800px;
+    margin-top: -15px;
+    background: rgba(0, 0, 0, 0);
+}
+
+.next-week {
+    float: right;
+    border: 0px;
+    font-size: 25px;
+    padding: 0 20px;
+    line-height: 0px;
+    justify-content: space-between;
+    display: block;
+    user-select: none;
+    margin-top: -15px;
+    background: rgba(0, 0, 0, 0);
+}
