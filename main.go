@@ -4,22 +4,17 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github/Intelligent-scheduling-system-back-end/util"
 )
 
-func handleRequest(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "Hello, World!",
-	})
-}
-
-// 在本地8080端口上运行一个html文件
-
 func main() {
-	router := gin.Default()
 
-	router.GET("/", handleRequest)
-	//对一个POST请求返回
+	util.DatabaseInit()
 
-	router.Run(":8080")
+	r := gin.Default()
+
+	r = CollectRoute(r)
+
+	panic(r.Run())
 
 }
