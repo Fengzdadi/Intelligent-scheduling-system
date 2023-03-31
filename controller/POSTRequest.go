@@ -27,7 +27,7 @@ func RegisterRequest(c *gin.Context) {
 	E.Shid = c.PostForm("Shid")
 
 	// 2. 将参数写入数据库
-	commom.Insert(E)
+	// commom.Insert(E)
 
 	// 3. 返回请求的结果
 	c.JSON(200, gin.H{
@@ -48,7 +48,6 @@ func DailySchedule(c *gin.Context) {
 func WeeklySchedule(c *gin.Context) {
 	// 请求周数据
 
-	week := c.PostForm("week")
 	var s []byte
 	// 从数据库中读出
 	s, err = commom.ReadWeeklySchedule(util.Pool)

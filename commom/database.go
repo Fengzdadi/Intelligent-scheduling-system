@@ -6,7 +6,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github/Intelligent-scheduling-system-back-end/model"
 	"log"
 	"strings"
 	"time"
@@ -73,41 +72,41 @@ func ConnectPool() {
 	return
 }
 
-func Insert(Employee model.Employee) {
-	// 插入数据
-	Attach()
-	fmt.Println(strings.Join(conf, ";"))
-	_, err = sql.Open("adodb", strings.Join(conf, ";"))
-	if err != nil {
-		fmt.Println("sql open:", err)
-		return
-	}
-
-	_, err = db.Exec("INSERT INTO Employee (Eid,Ename,Eemail,Epos,Shid) VALUES (?, ?, ?, ?, ?)", Employee.Eid, Employee.Ename, Employee.Eemail, Employee.Epos, Employee.Shid)
-	if err != nil {
-		fmt.Println("Insert data err=", err)
-	}
-	fmt.Println("成功插入数据!")
-}
-
-func InsertData(dbPool *commom.ConnPool) {
-	// 获取连接
-	db, err := dbPool.Get()
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer dbPool.Release(db)
-
-	// 执行数据库操作
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-
-	// sql查询语句
-	_, err = db.ExecContext(ctx, "INSERT INTO PaiBan (Name,Time,Classroom,Week,Section) VALUES (?, ?, ?, ?, ?)", "tom", "2021-05-11", "A102", "星期一", "第一节")
-	if err != nil {
-		log.Fatal(err)
-	}
-}
+//func Insert(Employee model.Employee) {
+//	// 插入数据
+//	Attach()
+//	fmt.Println(strings.Join(conf, ";"))
+//	_, err = sql.Open("adodb", strings.Join(conf, ";"))
+//	if err != nil {
+//		fmt.Println("sql open:", err)
+//		return
+//	}
+//
+//	_, err = db.Exec("INSERT INTO Employee (Eid,Ename,Eemail,Epos,Shid) VALUES (?, ?, ?, ?, ?)", Employee.Eid, Employee.Ename, Employee.Eemail, Employee.Epos, Employee.Shid)
+//	if err != nil {
+//		fmt.Println("Insert data err=", err)
+//	}
+//	fmt.Println("成功插入数据!")
+//}
+//
+//func InsertData(dbPool *commom.ConnPool) {
+//	// 获取连接
+//	db, err := dbPool.Get()
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	defer dbPool.Release(db)
+//
+//	// 执行数据库操作
+//	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+//	defer cancel()
+//
+//	// sql查询语句
+//	_, err = db.ExecContext(ctx, "INSERT INTO PaiBan (Name,Time,Classroom,Week,Section) VALUES (?, ?, ?, ?, ?)", "tom", "2021-05-11", "A102", "星期一", "第一节")
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//}
 
 func ReadDailySchedule(dbPool *ConnPool, day string) ([]byte, error) {
 	db, err := dbPool.Get()

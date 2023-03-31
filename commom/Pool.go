@@ -4,11 +4,13 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"github.com/go-ini/ini"
 	"log"
 	"strings"
 	"time"
 
 	_ "github.com/denisenkom/go-mssqldb"
+	_ "github.com/mattn/go-adodb"
 )
 
 // 定义连接池结构体
@@ -20,11 +22,22 @@ type ConnPool struct {
 func NewConnPool(poolSize int) (*ConnPool, error) {
 	conns := make(chan *sql.DB, poolSize)
 	var conf []string
-	conf = append(conf, "Provider=SQLSEVERDB")
-	conf = append(conf, "Data Source=47.120.3.158") // sqlserver IP 和 服务器名称
-	conf = append(conf, "Initial Catalog=Test")     // 数据库名
-	conf = append(conf, "user id=SA")               // 登陆用户名
-	conf = append(conf, "password=Mzh1234@")        // 登陆密码
+	// 从 config文件中提取
+	cfg, err := ini.Load("./config.ini")
+	if err != nil {
+		log.Fatal(err)
+	}
+	conf = append(conf, cfg.Section("sqlServer").Key("Provider").Value())
+	conf = append(conf, cfg.Section("sqlServer").Key("Data Source").Value())
+	conf = append(conf, cfg.Section("sqlServer").Key("Initial Catalog").Value())
+	conf = append(conf, cfg.Section("sqlServer").Key("user id").Value())
+	conf = append(conf, cfg.Section("sqlServer").Key("password").Value())
+
+	//conf = append(conf, "Provider=SQLSEVERDB")
+	//conf = append(conf, "Data Source=47.120.3.158") // sqlserver IP 和 服务器名称
+	//conf = append(conf, "Initial Catalog=Test")     // 数据库名
+	//conf = append(conf, "user id=SA")               // 登陆用户名
+	//conf = append(conf, "password=Mzh1234@")        // 登陆密码
 
 	for i := 0; i < poolSize; i++ {
 		db, err := sql.Open("adodb", strings.Join(conf, ";"))
