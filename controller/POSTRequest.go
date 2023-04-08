@@ -1,8 +1,9 @@
 package controller
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
-	"github/Intelligent-scheduling-system-back-end/commom"
+	"github/Intelligent-scheduling-system-back-end/common"
 	"github/Intelligent-scheduling-system-back-end/model"
 	"github/Intelligent-scheduling-system-back-end/util"
 )
@@ -27,7 +28,7 @@ func RegisterRequest(c *gin.Context) {
 	E.Shid = c.PostForm("Shid")
 
 	// 2. 将参数写入数据库
-	// commom.Insert(E)
+	// common.Insert(E)
 
 	// 3. 返回请求的结果
 	c.JSON(200, gin.H{
@@ -37,12 +38,37 @@ func RegisterRequest(c *gin.Context) {
 
 func DailySchedule(c *gin.Context) {
 	// 请求天数据
-
-	dayOfWeek := c.PostForm("dayOfWeek")
+	var dayOfWeek = c.PostForm("dayOfWeek")
 	var s []byte
 	// 从数据库中读出
-	s, err = commom.ReadDailySchedule(util.Pool, dayOfWeek)
-	c.JSON(200, s)
+	switch dayOfWeek {
+	case "1":
+		s, err = common.ReadDailySchedule1(util.Pool)
+	case "2":
+		s, err = common.ReadDailySchedule2(util.Pool)
+	case "3":
+		s, err = common.ReadDailySchedule3(util.Pool)
+	case "4":
+		s, err = common.ReadDailySchedule4(util.Pool)
+	case "5":
+		s, err = common.ReadDailySchedule5(util.Pool)
+	case "6":
+		s, err = common.ReadDailySchedule6(util.Pool)
+	case "7":
+		s, err = common.ReadDailySchedule7(util.Pool)
+	}
+	j := make(map[string]interface{})
+	err := json.Unmarshal(s, &j)
+	if err != nil {
+		return
+	}
+	if j != nil {
+		c.JSON(200, j)
+	} else {
+		c.JSON(202, gin.H{
+			"message": "Check ReadDailySchedule failed!",
+		})
+	}
 }
 
 func WeeklySchedule(c *gin.Context) {
@@ -50,6 +76,40 @@ func WeeklySchedule(c *gin.Context) {
 
 	var s []byte
 	// 从数据库中读出
-	s, err = commom.ReadWeeklySchedule(util.Pool)
-	c.JSON(200, s)
+	s, err = common.ReadWeeklySchedule(util.Pool)
+	j := make(map[string]interface{})
+	err := json.Unmarshal(s, &j)
+	if err != nil {
+		return
+	}
+	c.JSON(200, j)
+}
+
+func EnployeesAdd(c *gin.Context) {
+
+	var employee model.Employee
+	var emplike model.Emplike
+
+	employee.Eid = c.PostForm("Eid")
+	employee.Ename = c.PostForm("Ename")
+	employee.Eemail = c.PostForm("Eemail")
+	employee.Epos = c.PostForm("Epos")
+	employee.Shid = c.PostForm("Shid")
+
+	emplike.Eid = c.PostForm("Eid")
+	emplike.Etype = c.PostForm("Etype")
+	emplike.Elike = c.PostForm("Elike")
+
+	var s string
+
+	s, err = common.InsertEmployee(util.Pool, employee, emplike)
+	if s == "success" {
+		c.JSON(200, gin.H{
+			"message": "employee add success!",
+		})
+	} else {
+		c.JSON(202, gin.H{
+			"message": "employee add failed!",
+		})
+	}
 }
