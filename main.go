@@ -8,8 +8,12 @@ import (
 )
 
 func main() {
-
-	util.DatabaseInit()
+	var err error
+	_, err = util.DatabaseInit()
+	if err != nil {
+		print(404)
+		return
+	}
 
 	r := gin.Default()
 
