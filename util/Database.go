@@ -11,7 +11,7 @@ var Pool *common.ConnPool
 func DatabaseInit() (string, error) {
 	// 初始化连接池
 	var err error
-	Pool, err = common.NewConnPool(10)
+	Pool, err = common.NewConnPool(20)
 	if err != nil {
 		log.Fatal(err)
 		return "failed", err
@@ -19,6 +19,6 @@ func DatabaseInit() (string, error) {
 	return "success", err
 }
 
-func RedisInit() {
-	common.RedisConnect()
-}
+//func RedisInit() {
+//	common.RedisConnect()
+//}

@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github/Intelligent-scheduling-system-back-end/common"
 	"github/Intelligent-scheduling-system-back-end/model"
@@ -39,7 +38,7 @@ func RegisterRequest(c *gin.Context) {
 func DailySchedule(c *gin.Context) {
 	// 请求天数据
 	var dayOfWeek = c.PostForm("dayOfWeek")
-	var s []byte
+	var s []string
 	// 从数据库中读出
 	switch dayOfWeek {
 	case "1":
@@ -57,13 +56,13 @@ func DailySchedule(c *gin.Context) {
 	case "7":
 		s, err = common.ReadDailySchedule7(util.Pool)
 	}
-	j := make(map[string]interface{})
-	err := json.Unmarshal(s, &j)
-	if err != nil {
-		return
-	}
-	if j != nil {
-		c.JSON(200, j)
+	// j := make(map[string]interface{})
+	// err := json.Unmarshal(s, &j)
+	// if err != nil {
+	//	return
+	//}
+	if s != nil {
+		c.JSON(200, s)
 	} else {
 		c.JSON(202, gin.H{
 			"message": "Check ReadDailySchedule failed!",
@@ -74,15 +73,15 @@ func DailySchedule(c *gin.Context) {
 func WeeklySchedule(c *gin.Context) {
 	// 请求周数据
 
-	var s []byte
+	var s []string
 	// 从数据库中读出
 	s, err = common.ReadWeeklySchedule(util.Pool)
-	j := make(map[string]interface{})
-	err := json.Unmarshal(s, &j)
-	if err != nil {
-		return
-	}
-	c.JSON(200, j)
+	//j := make(map[string]interface{})
+	//err := json.Unmarshal(s, &j)
+	//if err != nil {
+	//	return
+	//}
+	c.JSON(200, s)
 }
 
 func EnployeesAdd(c *gin.Context) {

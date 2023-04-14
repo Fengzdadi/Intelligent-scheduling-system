@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func ReadDailySchedule1(dbPool *ConnPool) ([]byte, error) {
+func ReadDailySchedule1(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -36,7 +36,7 @@ func ReadDailySchedule1(dbPool *ConnPool) ([]byte, error) {
 		}
 	}(rows)
 
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, W1 string
 		if err := rows.Scan(&planid, &eid, &epos, &W1); err != nil {
@@ -54,12 +54,13 @@ func ReadDailySchedule1(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }
 
-func ReadDailySchedule2(dbPool *ConnPool) ([]byte, error) {
+func ReadDailySchedule2(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -85,7 +86,7 @@ func ReadDailySchedule2(dbPool *ConnPool) ([]byte, error) {
 		}
 	}(rows)
 
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, W2 string
 		if err := rows.Scan(&planid, &eid, &epos, &W2); err != nil {
@@ -103,12 +104,13 @@ func ReadDailySchedule2(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }
 
-func ReadDailySchedule3(dbPool *ConnPool) ([]byte, error) {
+func ReadDailySchedule3(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -134,7 +136,7 @@ func ReadDailySchedule3(dbPool *ConnPool) ([]byte, error) {
 		}
 	}(rows)
 
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, w3 string
 		if err := rows.Scan(&planid, &eid, &epos, &w3); err != nil {
@@ -152,12 +154,13 @@ func ReadDailySchedule3(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }
 
-func ReadDailySchedule4(dbPool *ConnPool) ([]byte, error) {
+func ReadDailySchedule4(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -183,7 +186,7 @@ func ReadDailySchedule4(dbPool *ConnPool) ([]byte, error) {
 		}
 	}(rows)
 
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, W4 string
 		if err := rows.Scan(&planid, &eid, &epos, &W4); err != nil {
@@ -201,12 +204,13 @@ func ReadDailySchedule4(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }
 
-func ReadDailySchedule5(dbPool *ConnPool) ([]byte, error) {
+func ReadDailySchedule5(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -232,7 +236,7 @@ func ReadDailySchedule5(dbPool *ConnPool) ([]byte, error) {
 		}
 	}(rows)
 
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, W5 string
 		if err := rows.Scan(&planid, &eid, &epos, &W5); err != nil {
@@ -250,12 +254,13 @@ func ReadDailySchedule5(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }
 
-func ReadDailySchedule6(dbPool *ConnPool) ([]byte, error) {
+func ReadDailySchedule6(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -281,7 +286,7 @@ func ReadDailySchedule6(dbPool *ConnPool) ([]byte, error) {
 		}
 	}(rows)
 
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, W6 string
 		if err := rows.Scan(&planid, &eid, &epos, &W6); err != nil {
@@ -299,12 +304,13 @@ func ReadDailySchedule6(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }
 
-func ReadDailySchedule7(dbPool *ConnPool) ([]byte, error) {
+func ReadDailySchedule7(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -330,7 +336,7 @@ func ReadDailySchedule7(dbPool *ConnPool) ([]byte, error) {
 		}
 	}(rows)
 
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, W7 string
 		if err := rows.Scan(&planid, &eid, &epos, &W7); err != nil {
@@ -348,7 +354,8 @@ func ReadDailySchedule7(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }

@@ -24,7 +24,7 @@ func CollectRoute(r *gin.Engine) *gin.Engine {
 	r.POST("/EmployeesAdd", controller.EnployeesAdd)
 
 	// PUT
-	r.PUT("/EmployeesUpdate", controller.EmployeeUpdate)
+	r.PUT("/EmployeeUpdate", controller.EmployeeUpdate)
 
 	return r
 }

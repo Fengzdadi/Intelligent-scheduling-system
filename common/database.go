@@ -61,7 +61,7 @@ func ReadDailySchedule(dbPool *ConnPool) ([]byte, error) {
 	return jsonData, nil
 }
 
-func ReadWeeklySchedule(dbPool *ConnPool) ([]byte, error) {
+func ReadWeeklySchedule(dbPool *ConnPool) ([]string, error) {
 	db, err := dbPool.Get()
 	if err != nil {
 		return nil, err
@@ -72,7 +72,7 @@ func ReadWeeklySchedule(dbPool *ConnPool) ([]byte, error) {
 	defer cancel()
 
 	// SQL查询语句，注意指定需要查询的列
-	var tsql = `SELECT Planid, Eid, Epos, W1, W2, W3, W4, W5, W6, W7 FROM [dbo].[PaiBan];`
+	var tsql = `SELECT Planid, Eid, Epos, W1, W2, W3, W4, W5, W6, W7 FROM PaiBan;`
 
 	// 准备SQL查询语句
 	stmt, err := db.PrepareContext(ctx, tsql)
@@ -91,7 +91,7 @@ func ReadWeeklySchedule(dbPool *ConnPool) ([]byte, error) {
 	defer rows.Close()
 
 	// 将查询结果转换为JSON格式
-	var jsonData []byte
+	var jsonData []string
 	for rows.Next() {
 		var planid, eid, epos, w1, w2, w3, w4, w5, w6, w7 string
 		if err := rows.Scan(&planid, &eid, &epos, &w1, &w2, &w3, &w4, &w5, &w6, &w7); err != nil {
@@ -115,7 +115,8 @@ func ReadWeeklySchedule(dbPool *ConnPool) ([]byte, error) {
 			log.Println("Error marshalling JSON:", err)
 			return nil, err
 		}
-		jsonData = append(jsonData, jsonRow...)
+		var jsonRow0 = string(jsonRow)
+		jsonData = append(jsonData, jsonRow0)
 	}
 	return jsonData, nil
 }

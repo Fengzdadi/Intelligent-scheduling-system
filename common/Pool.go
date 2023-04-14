@@ -5,7 +5,6 @@ import (
 	"fmt"
 	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/go-ini/ini"
-	_ "github.com/mattn/go-adodb"
 	"log"
 )
 
