@@ -104,7 +104,7 @@ func EnployeesAdd(c *gin.Context) {
 
 	s, err = common.InsertEmployee(util.Pool, employee, emplike)
 	if s == "success" {
-		c.JSON(200, gin.H{
+		c.JSON(201, gin.H{
 			"message": "employee add success!",
 		})
 	} else {
@@ -112,4 +112,10 @@ func EnployeesAdd(c *gin.Context) {
 			"message": "employee add failed!",
 		})
 	}
+}
+
+func EmployeeUpdate(c *gin.Context) {
+	c.JSON(201, gin.H{
+		"message": "employee update success!",
+	})
 }
