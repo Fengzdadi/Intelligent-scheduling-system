@@ -18,3 +18,7 @@ func DatabaseInit() (string, error) {
 	}
 	return "success", err
 }
+
+func RedisInit() {
+	common.RedisConnect()
+}
